@@ -1,0 +1,22 @@
+{
+  "name": "timtool-ui",
+  "version": "1.0.0",
+  "description": "with semantic UIand router : try new router",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "1.1.4",
+    "semantic-ui-css": "2.3.1",
+    "semantic-ui-react": "0.81.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
