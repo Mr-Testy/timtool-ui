@@ -1,38 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
-// import { TUNES } from '../../store.js';
+import PropTypes from 'prop-types';
 
 export default class TableOfTunes extends Component {
-  state = {
-    column: null,
-    data: [],
-    direction: null
-  }
-
-  handleSort = clickedColumn => () => {
-    const { column, direction } = this.state;
-    const data = this.state.data.length === 0 ? this.props.data : this.state.data; 
-
-    if (column !== clickedColumn) {
-      this.setState({
-        column: clickedColumn,
-        data: _.sortBy(data, [clickedColumn]),
-        direction: 'ascending'
-      });
-
-      return;
-    }
-
-    this.setState({
-      data: data.reverse(),
-      direction: direction === 'ascending' ? 'descending' : 'ascending'
-    });
-  };
-
   render() {
-    const { column, direction } = this.state;
-    const data = this.state.data.length === 0 ? this.props.data : this.state.data;
+    const { column, direction, data } = this.props;
 
     return (
       <Table unstackable sortable striped selectable fixed compact>
@@ -40,25 +13,25 @@ export default class TableOfTunes extends Component {
       <Table.Row>
       <Table.HeaderCell
       sorted={column === 'name' ? direction : null}
-      onClick={this.handleSort('name')}
+      onClick={this.props.handleSort('name')}
       >
       Name
       </Table.HeaderCell>
       <Table.HeaderCell
       sorted={column === 'type' ? direction : null}
-      onClick={this.handleSort('type')}
+      onClick={this.props.handleSort('type')}
       >
       Type
       </Table.HeaderCell>
       <Table.HeaderCell
       sorted={column === 'key' ? direction : null}
-      onClick={this.handleSort('key')}
+      onClick={this.props.handleSort('key')}
       >
       Key
       </Table.HeaderCell>
       <Table.HeaderCell
       sorted={column === 'versions' ? direction : null}
-      onClick={this.handleSort('versions')}
+      onClick={this.props.handleSort('versions')}
       >
       Versions
       </Table.HeaderCell>
@@ -78,3 +51,9 @@ export default class TableOfTunes extends Component {
       );
   }
 }
+
+TableOfTunes.propTypes = {
+  column: PropTypes.string,
+  direction: PropTypes.string,
+  data: PropTypes.array.isRequired
+};

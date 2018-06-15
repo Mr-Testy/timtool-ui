@@ -1,20 +1,24 @@
 import React from 'react';
+import { Input } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 export default class Autofilter extends React.Component {
 
   render() {
-    // const list = this.state.data
-    // .filter(d => this.state.input === '' || d.includes(this.state.input))
-    // .map((d, index) => <li key={index}>{d}</li>);
     const {input, onChangeFilter} = this.props
     return (
-      <div>
-      <input
+      <Input
+      icon='search'
+      iconPosition='left'
+      placeholder='Filter tunes...'
       value={input}
-      type="text"
       onChange={onChangeFilter}
       />
-      </div>
       );
   }
 }
+
+Autofilter.propTypes = {
+  input: PropTypes.string.isRequired,
+  onChangeFilter: PropTypes.func.isRequired
+};
