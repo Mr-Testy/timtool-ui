@@ -14,22 +14,22 @@ export default class Main extends Component {
     const toggle = !this.props.visible ? null : this.props.changeVisibility;
     return (
       <div onClick={toggle}>
-        <Header
-          changeVisibility={this.props.changeVisibility}
-          changePage={this.props.changePage}
-          reinitPage={this.props.reinitPage}
-        />
-        <NavBar
-          nav={this.props.nav}
-          rollBackNavBar={this.props.rollBackNavBar}
-        />
-        <Segment>
-          <PageTitle pageTitle={this.props.nav.slice(-1)[0][1]} />
-          <Content nav={this.props.nav} changePage={this.props.changePage} />
-        </Segment>
-        <Footer />
+      <Header
+      changeVisibility={this.props.changeVisibility}
+      changePage={this.props.changePage}
+      reinitPage={this.props.reinitPage}
+      />
+      <NavBar
+      nav={this.props.nav}
+      rollBackNavBar={this.props.rollBackNavBar}
+      />
+      <Segment>
+      <PageTitle pageTitle={this.props.nav.slice(-1)[0][1]} icon={this.props.nav.slice(-1)[0][2]} subheader={this.props.nav.slice(-1)[0][3]}/>
+      <Content nav={this.props.nav} changePage={this.props.changePage} />
+      </Segment>
+      <Footer/>
       </div>
-    );
+      );
   }
 }
 

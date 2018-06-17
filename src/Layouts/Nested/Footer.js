@@ -3,15 +3,25 @@ import { Menu, Segment } from 'semantic-ui-react';
 
 const aboutTimtool = (
   <Segment inverted size="tiny" attached="bottom">
-    about
+  about
   </Segment>
-);
+  );
 
 const contact = (
   <Segment inverted size="tiny" attached="bottom">
-    contact
+  contact
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
+  <div>lol</div>
   </Segment>
-);
+  );
 
 export default class Footer extends Component {
   state = { activeFooter: 'About Timtool' };
@@ -24,21 +34,21 @@ export default class Footer extends Component {
 
     return (
       <div>
-        <Menu inverted pointing attached="top">
-          <Menu.Item
-            name="About Timtool"
-            active={activeFooter === 'About Timtool'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name="contact"
-            active={activeFooter === 'contact'}
-            onClick={this.handleItemClick}
-          />
-        </Menu>
+      <Menu inverted pointing attached="top">
+      <Menu.Item
+      name="About Timtool"
+      active={activeFooter === 'About Timtool'}
+      onClick={this.handleItemClick}
+      />
+      <Menu.Item
+      name="contact"
+      active={activeFooter === 'contact'}
+      onClick={this.handleItemClick}
+      />
+      </Menu>
 
-        {footer}
+      {footer}
       </div>
-    );
+      );
   }
 }

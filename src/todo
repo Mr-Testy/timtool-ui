@@ -1,1 +1,2 @@
 refacto all class to functions
+use redux to solve warning about state

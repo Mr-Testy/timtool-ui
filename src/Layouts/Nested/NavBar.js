@@ -9,31 +9,31 @@ const NavBar = props => {
     if (i + 1 === props.nav.length) {
       content.push(
         <Breadcrumb.Section
-          as={NavLink}
-          onClick={() => props.rollBackNavBar(i)}
-          to={props.nav[i][0]}
-          key={props.nav[i][1]}
+        as={NavLink}
+        onClick={() => props.rollBackNavBar(i)}
+        to={props.nav[i][0]}
+        key={props.nav[i][1]}
         >
-          {props.nav[i][1]}
+        {props.nav[i][1]}
         </Breadcrumb.Section>
-      );
+        );
     } else {
       content.push(
         <React.Fragment>
-          <Breadcrumb.Section
-            as={NavLink}
-            onClick={() => props.rollBackNavBar(i)}
-            to={props.nav[i][0]}
-          >
-            {props.nav[i][1]}
-          </Breadcrumb.Section>
-          <Breadcrumb.Divider />
+        <Breadcrumb.Section
+        as={NavLink}
+        onClick={() => props.rollBackNavBar(i)}
+        to={props.nav[i][0]}
+        >
+        {props.nav[i][1]}
+        </Breadcrumb.Section>
+        <Breadcrumb.Divider />
         </React.Fragment>
-      );
+        );
     }
   }
 
-  return <Breadcrumb size="massive">{content}</Breadcrumb>;
+  return <Breadcrumb size='small'>{content}</Breadcrumb>;
 };
 
 export default NavBar;
