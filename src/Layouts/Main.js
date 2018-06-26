@@ -25,10 +25,17 @@ export default class Main extends Component {
       rollBackNavBar={this.props.rollBackNavBar}
       />
       <Segment>
+<<<<<<< HEAD
       <PageTitle pageTitle={this.props.nav.slice(-1)[0][1]} />
       <Content nav={this.props.nav} changePage={this.props.changePage} />
       </Segment>
       <Footer />
+=======
+      <PageTitle pageTitle={this.props.nav.slice(-1)[0][1]} icon={this.props.nav.slice(-1)[0][2]} subheader={this.props.nav.slice(-1)[0][3]}/>
+      <Content nav={this.props.nav} changePage={this.props.changePage} />
+      </Segment>
+      <Footer/>
+>>>>>>> 8666298bc29e380f82af0a6f3ab1a8eab538065a
       </div>
       );
   }

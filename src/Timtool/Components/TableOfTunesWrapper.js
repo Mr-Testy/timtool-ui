@@ -5,6 +5,7 @@ import TableOfTunes from './TableOfTunes';
 import _ from 'lodash';
 
 const API = 'https://testy-dev.satsu.eu/timtoolApi/tunes/';
+const query = '?offset=10000';
 
 export default class TableOfTunesWrapper extends Component {
   state = {
@@ -12,14 +13,16 @@ export default class TableOfTunesWrapper extends Component {
     filteredData: [],
     input: '',
     column: null,
-    direction: null
+    direction: null,
+    isLoading: true,
   };
 
   componentDidMount() {
-    fetch(API)
+    fetch(API + query)
     .then(response => response.json())
     .then(data => this.setState({ data: data,
-      filteredData: data
+      filteredData: data,
+      isLoading: false
     }));
   }
 
@@ -54,12 +57,12 @@ export default class TableOfTunesWrapper extends Component {
   };
 
   render() {
-    const { filteredData, input, column, direction } = this.state;
+    const { filteredData, input, column, direction, isLoading } = this.state;
 
     return (
       <div>
       <Autofilter onChangeFilter={this.onChangeFilter} input={input}/>
-      <TableOfTunes data={filteredData} column={column} direction={direction} handleSort={this.handleSort}/>
+      <TableOfTunes data={filteredData} column={column} direction={direction} handleSort={this.handleSort} isLoading={isLoading}/>
       </div>
       );
   }
