@@ -1,10 +1,10 @@
-import React from 'react';
-import { Sidebar, Segment, Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Sidebar, Segment, Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import MainContainer from '../containers/MainContainer'
+import MainContainer from '../../containers/layouts/MainContainer'
 
-const App = ({ sideBarIsVisible, actions }) => (
+const App = ({ sideBarIsVisible, switchVisibleSideBarOff, switchVisibleSideBarOn, double }) => (
   <Sidebar.Pushable as={Segment}>
   <Sidebar
   as={Menu}
@@ -16,35 +16,35 @@ const App = ({ sideBarIsVisible, actions }) => (
   >
   <Menu.Item
   as={Link}
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={switchVisibleSideBarOff}
   icon="home"
   content="Home"
   to="/"
   />
   <Menu.Item
   as={Link}
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={switchVisibleSideBarOff}
   icon="music"
   content="All tunes"
   to="/alltunes"
   />
   <Menu.Item
   as={Link}
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={switchVisibleSideBarOff}
   icon="users"
   content="Groups"
   to="/groups"
   />
   <Menu.Item
   as={Link}
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={switchVisibleSideBarOff}
   icon="random"
   content="Comparator"
   to="/comparator"
   />
   <Menu.Item
   as={Link}
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={switchVisibleSideBarOff}
   icon="settings"
   content="Generator"
   to="/generator"

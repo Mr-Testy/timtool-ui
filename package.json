@@ -11,7 +11,9 @@
     "react-router-dom": "4.3.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
+    "redux-batched-subscribe": "^0.1.6",
     "redux-logger": "^3.0.6",
+    "redux-multi": "^0.1.12",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "2.3.1",
     "semantic-ui-react": "0.81.1"

@@ -10,16 +10,16 @@ import {
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const toggle = ( actions, sideBarIsVisible) =>
+const toggle = ( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible) =>
 {
   if (sideBarIsVisible === false) {
-    return (actions.switchVisibleSideBarOn)
+    return switchVisibleSideBarOn
   } else {
-    return (actions.switchVisibleSideBarOff)
+    return null
   }
 }
 
-const Header = ({actions, sideBarIsVisible}) => (
+const Header = ({switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible, double}) => (
   <Menu inverted borderless>
   <Menu.Item>
   <Button
@@ -28,7 +28,7 @@ const Header = ({actions, sideBarIsVisible}) => (
   content="Menu"
   icon="sidebar"
   labelPosition="left"
-  onClick={toggle(actions, sideBarIsVisible)}
+  onClick={toggle( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible)}
   />
   </Menu.Item>
   <Menu.Item name="timtool" header />
@@ -47,7 +47,7 @@ const Header = ({actions, sideBarIsVisible}) => (
   as={Link}
   icon="user"
   content="My account"
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={double}
   to="/myaccount"
   subheader="la c'est dans le header"
   />
@@ -55,7 +55,7 @@ const Header = ({actions, sideBarIsVisible}) => (
   as={Link}
   icon="heart"
   content="My favorites"
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={double}
   to="/myfavorites"
   subheader="comme à la maison"
   />
@@ -63,7 +63,7 @@ const Header = ({actions, sideBarIsVisible}) => (
   as={Link}
   icon="handshake"
   content="My groups"
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={double}
   to="/mygroups"
   subheader="un x ieme message"
   />
@@ -71,7 +71,7 @@ const Header = ({actions, sideBarIsVisible}) => (
   as={Link}
   icon="dashboard"
   content="My dashboard"
-  onClick={actions.switchVisibleSideBarOff}
+  onClick={double}
   to="/mydashboard"
   subheader="le dernier pour l'instant"
   />
