@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import tunes from './tunes'
-import visibilityFilter from './visibilityFilter'
-import sideBar from './sideBar'
+import sidebar from './sidebar'
+import breadcrumb from './breadcrumb'
 
 const rootReducer = combineReducers({
 	tunes,
-	visibilityFilter,
-	sideBar
+	sidebar,
+	breadcrumb
 })
 
 export default rootReducer

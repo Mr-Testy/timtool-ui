@@ -2,7 +2,7 @@ import _ from 'lodash'
 import {
 	SWITCH_VISIBLE_SIDE_BAR_ON,
 	SWITCH_VISIBLE_SIDE_BAR_OFF,
-} from '../constants/ActionTypes'
+} from '../constants'
 
 export default function sideBar(state = {IsVisible: false}, action) {
 	switch (action.type) {

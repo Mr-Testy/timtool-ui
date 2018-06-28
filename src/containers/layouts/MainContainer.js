@@ -1,11 +1,10 @@
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as ActionCreators from '../../actions'
 import Main from '../../components/layouts/Main'
 
 const mapStateToProps = state => {
 	return {
-		sideBarIsVisible: state.sideBar.IsVisible,
+		sideBarIsVisible: state.sidebar.IsVisible,
 	}
 }
 
