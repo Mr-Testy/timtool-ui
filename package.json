@@ -5,22 +5,21 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "cross-fetch": "^2.2.2",
     "react": "16.3.2",
     "react-dom": "16.3.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "4.3.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
-    "redux-batched-subscribe": "^0.1.6",
     "redux-logger": "^3.0.6",
-    "redux-multi": "^0.1.12",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "2.3.1",
     "semantic-ui-react": "0.81.1"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "set PORT=3006 && react-scripts start",
+    "start": "set PORT=3001 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

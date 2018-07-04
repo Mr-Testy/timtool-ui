@@ -9,13 +9,13 @@ import MyGroups from './MyGroups';
 import MyDashboard from './MyDashboard';
 
 export {
-  Home,
-  Tunes,
-  Groups,
-  Comparator,
-  Generator,
-  MyAccount,
-  MyFavorites,
-  MyGroups,
-  MyDashboard
+	Home,
+	Tunes,
+	Groups,
+	Comparator,
+	Generator,
+	MyAccount,
+	MyFavorites,
+	MyGroups,
+	MyDashboard
 };

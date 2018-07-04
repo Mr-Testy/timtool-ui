@@ -1,10 +1,13 @@
 import React from 'react';
-import Footer from './Footer'
-import Content from './Content'
-import Header from './Header'
-import BreadcrumbsContainer from '../../containers/layouts/BreadcrumbsContainer'
+import PropTypes from 'prop-types'
 
-const toggle = ( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible) =>
+import Footer from './Footer'
+import ContentContainer from '../../containers/layouts/ContentContainer'
+import HeaderContainer from '../../containers/layouts/HeaderContainer'
+import BreadcrumbsContainer from '../../containers/layouts/BreadcrumbsContainer'
+import PageHeaderContainer from '../../containers/pages/PageHeaderContainer'
+
+const toggle = ( switchVisibleSideBarOff, sideBarIsVisible) =>
 {
   if (sideBarIsVisible === false) {
     return null
@@ -13,25 +16,20 @@ const toggle = ( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisib
 }
 }
 
-const Main = ({ switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible, double }) => {
-    return (<div onClick={toggle( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible)}>
-        <Header sideBarIsVisible={sideBarIsVisible} switchVisibleSideBarOn={switchVisibleSideBarOn} switchVisibleSideBarOff={switchVisibleSideBarOff} double={double}/>
+const Main = ({ switchVisibleSideBarOff, sideBarIsVisible }) => {
+    return (<div onClick={toggle( switchVisibleSideBarOff, sideBarIsVisible)}>
+        <HeaderContainer />
         <BreadcrumbsContainer />
-        <Content />
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
-        <p>lol</p>
+        <PageHeaderContainer />
+        <ContentContainer />
         <Footer />
         </div>
         )
 }
 
+
+Main.propTypes = {
+    sideBarIsVisible: PropTypes.bool.isRequired,
+    switchVisibleSideBarOff: PropTypes.func.isRequired,
+}
 export default Main

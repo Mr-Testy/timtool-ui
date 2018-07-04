@@ -1,81 +1,69 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import {
-  Home,
-  Tunes,
   Groups,
   Comparator,
   Generator,
   MyAccount,
   MyFavorites,
   MyGroups,
-  MyDashboard
+  MyDashboard,
 } from '../pages';
+import {
+  HomeContainer,
+  TunesContainer,
+  SearchContainer
+} from '../../containers/pages'
 
 const Content = () => (
   <div>
   <Route
   exact
   path="/"
-  component={props => (
-    <Home {...props} />
-    )}
+  component={HomeContainer}
   />
   <Route
-  exact
-  path="/alltunes"
-  component={props => (
-    <Tunes {...props} />
-    )}
+  path="/tunes"
+  component={TunesContainer}
+  />
+  <Route
+  path="/search"
+  component={SearchContainer}
   />
   <Route
   exact
   path="/groups"
-  component={props => (
-    <Groups {...props} />
-    )}
+  component={Groups}
   />
   <Route
   exact
   path="/comparator"
-  component={props => (
-    <Comparator {...props} />
-    )}
+  component={Comparator}
   />
   <Route
   exact
   path="/generator"
-  component={props => (
-    <Generator {...props} />
-    )}
+  component={Generator}
   />
   <Route
   exact
   path="/myaccount"
-  component={props => (
-    <MyAccount {...props} />
-    )}
+  component={MyAccount}
   />
   <Route
   exact
   path="/myfavorites"
-  component={props => (
-    <MyFavorites {...props} />
-    )}
+  component={MyFavorites}
   />
   <Route
   exact
   path="/mygroups"
-  component={props => (
-    <MyGroups {...props} />
-    )}
+  component={MyGroups}
   />
   <Route
   exact
   path="/mydashboard"
-  component={props => (
-    <MyDashboard {...props} />
-    )}
+  component={MyDashboard}
   />
   </div>
   )

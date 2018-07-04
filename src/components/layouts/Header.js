@@ -1,16 +1,16 @@
 import React from 'react';
 import {
-  Input,
   Menu,
   Responsive,
   Button,
   Icon,
-  Dropdown
+  Dropdown,
+  Form
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const toggle = ( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible) =>
+const toggle = ( switchVisibleSideBarOn, sideBarIsVisible) =>
 {
   if (sideBarIsVisible === false) {
     return switchVisibleSideBarOn
@@ -19,71 +19,87 @@ const toggle = ( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisib
   }
 }
 
-const Header = ({switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible, double}) => (
-  <Menu inverted borderless>
-  <Menu.Item>
-  <Button
-  circular
-  inverted
-  content="Menu"
-  icon="sidebar"
-  labelPosition="left"
-  onClick={toggle( switchVisibleSideBarOff, switchVisibleSideBarOn, sideBarIsVisible)}
-  />
-  </Menu.Item>
-  <Menu.Item name="timtool" header />
-  <Menu.Menu position="right">
-  <Responsive minWidth={560}>
-  <Menu.Item>
-  <Input
-  icon={<Icon name="search" inverted circular link />}
-  placeholder="Search..."
-  />
-  </Menu.Item>
-  </Responsive>
-  <Dropdown item text="username">
-  <Dropdown.Menu>
-  <Dropdown.Item
-  as={Link}
-  icon="user"
-  content="My account"
-  onClick={double}
-  to="/myaccount"
-  subheader="la c'est dans le header"
-  />
-  <Dropdown.Item
-  as={Link}
-  icon="heart"
-  content="My favorites"
-  onClick={double}
-  to="/myfavorites"
-  subheader="comme à la maison"
-  />
-  <Dropdown.Item
-  as={Link}
-  icon="handshake"
-  content="My groups"
-  onClick={double}
-  to="/mygroups"
-  subheader="un x ieme message"
-  />
-  <Dropdown.Item
-  as={Link}
-  icon="dashboard"
-  content="My dashboard"
-  onClick={double}
-  to="/mydashboard"
-  subheader="le dernier pour l'instant"
-  />
-  </Dropdown.Menu>
-  </Dropdown>
-  </Menu.Menu>
-  </Menu>
-  )
+class Header extends React.Component {
+  state = { search: ''}
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
+
+  render (){
+    const { search } = this.state
+    const {
+      switchVisibleSideBarOn,
+      sideBarIsVisible,
+      changePage,
+    } = this.props
+    return (
+      <Menu inverted borderless>
+      <Menu.Item>
+      <Button
+      circular
+      inverted
+      content="Menu"
+      icon="sidebar"
+      labelPosition="left"
+      onClick={toggle( switchVisibleSideBarOn, sideBarIsVisible)}
+      />
+      </Menu.Item>
+      <Menu.Item name="timtool" header />
+      <Menu.Menu position="right">
+      <Responsive minWidth={560}>
+      <Menu.Item>
+      <Form onSubmit={() => changePage("/search/" + search, "Search", "Recherche de tunes contenant : " + search, "search")}>
+      <Form.Input
+      icon={<Icon name="search" inverted circular link onClick={() => changePage("/search/" + search, "Search", "Recherche de tunes contenant : " + search, "search")}/>}
+      placeholder="Search..."
+      name='search' 
+      value={search} 
+      onChange={this.handleChange}    
+      />
+      </Form>
+      </Menu.Item>
+      </Responsive>
+      <Dropdown item text="username">
+      <Dropdown.Menu>
+      <Dropdown.Item
+      as={Link}
+      icon="user"
+      content="My account"
+      onClick={() => changePage("/myaccount", "My account", "Informations de mon compte", "user")}
+      to="/myaccount"
+      />
+      <Dropdown.Item
+      as={Link}
+      icon="heart"
+      content="My favorites"
+      onClick={() => changePage("/myfavorites", "My favorites", "Mes tunes ajoutés en favori", "heart")}
+      to="/myfavorites"
+      />
+      <Dropdown.Item
+      as={Link}
+      icon="handshake"
+      content="My groups"
+      onClick={() => changePage("/mygroups", "My groups", "Mes groupes", "handshake")}
+      to="/mygroups"
+      />
+      <Dropdown.Item
+      as={Link}
+      icon="dashboard"
+      content="My dashboard"
+      onClick={() => changePage("/mydashboard", "My dashboard", "Le tableau de bord de mes tunes favoris et de mon activité", "dashboard")}
+      to="/mydashboard"
+      />
+      </Dropdown.Menu>
+      </Dropdown>
+      </Menu.Menu>
+      </Menu>
+      )
+  }
+}
 
 Header.propTypes = {
   sideBarIsVisible: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired
+  switchVisibleSideBarOn: PropTypes.func.isRequired,
+  changePage: PropTypes.func.isRequired,
 };
 
 export default Header

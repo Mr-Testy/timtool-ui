@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import * as ActionCreators from '../../actions'
 import Main from '../../components/layouts/Main'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
 	return {
@@ -11,12 +12,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		switchVisibleSideBarOff: () => dispatch(ActionCreators.switchVisibleSideBarOff()),
-		switchVisibleSideBarOn: () => dispatch(ActionCreators.switchVisibleSideBarOn()),
-		double: () => dispatch([ActionCreators.switchVisibleSideBarOn(), ActionCreators.switchVisibleSideBarOff()])
 	}
 }
 
-export default connect(
+export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps
-	)(Main)
+	)(Main))

@@ -3,18 +3,18 @@ import { Breadcrumb } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Breadcrumbs = props => {
+const Breadcrumbs = ({pages, rollBackBreadcrumb}) => {
 	let content = [];
-	for (let i = 0; i < props.nav.length; i++) {
-		if (i + 1 === props.nav.length) {
+	for (let i = 0; i < pages.length; i++) {
+		if (i + 1 === pages.length) {
 			content.push(
 				<Breadcrumb.Section
 				as={NavLink}
-				onClick={() => props.rollBackNavBar(i)}
-				to={props.nav[i][0]}
-				key={props.nav[i][1]}
+				onClick={() => rollBackBreadcrumb(i)}
+				to={pages[i].path}
+				key={pages[i].path}
 				>
-				{props.nav[i][1]}
+				{pages[i].title}
 				</Breadcrumb.Section>
 				);
 		} else {
@@ -22,10 +22,10 @@ const Breadcrumbs = props => {
 				<React.Fragment>
 				<Breadcrumb.Section
 				as={NavLink}
-				onClick={() => props.rollBackNavBar(i)}
-				to={props.nav[i][0]}
+				onClick={() => rollBackBreadcrumb(i)}
+				to={pages[i].path}
 				>
-				{props.nav[i][1]}
+				{pages[i].title}
 				</Breadcrumb.Section>
 				<Breadcrumb.Divider />
 				</React.Fragment>
@@ -39,6 +39,6 @@ const Breadcrumbs = props => {
 export default Breadcrumbs;
 
 Breadcrumbs.propTypes = {
-	nav: PropTypes.array.isRequired,
-	rollBackNavBar: PropTypes.func.isRequired
+	pages: PropTypes.array.isRequired,
+	rollBackBreadcrumb: PropTypes.func.isRequired
 };

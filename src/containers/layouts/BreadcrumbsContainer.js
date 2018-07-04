@@ -1,20 +1,21 @@
 import { connect } from 'react-redux'
 import * as ActionCreators from '../../actions'
 import Breadcrumbs from '../../components/layouts/Breadcrumbs'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
 	return {
-		nav: state.breadcrumb,
+		pages: state.breadcrumb.pages,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		rollBackNavBar: () => dispatch(ActionCreators.rollBackNavBar()),
+		rollBackBreadcrumb: (destination) => dispatch(ActionCreators.rollBackBreadcrumb(destination)),
 	}
 }
 
-export default connect(
+export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps
-	)(Breadcrumbs)
+	)(Breadcrumbs))
