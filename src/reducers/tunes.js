@@ -5,7 +5,8 @@ import {
 
 export default function tunes(state = {
 	isFetching: false,
-	tunes: []
+	tunes: [],
+	areStale: true
 }, action) {
 	switch (action.type) {
 		case REQUEST_TUNES:
@@ -17,7 +18,8 @@ export default function tunes(state = {
 		return Object.assign({}, state, {
 			isFetching: false,
 			tunes: action.tunes,
-			lastUpdated: action.receivedAt
+			lastUpdated: action.receivedAt,
+			areStale: false,
 		})
 
 		default:

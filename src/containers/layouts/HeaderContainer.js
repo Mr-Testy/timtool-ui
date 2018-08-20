@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
 	return {
-		sideBarIsVisible: state.sidebar.IsVisible,
+		sideBarIsVisible: state.sidebar.isVisible,
 		breadcrumb: state.breadcrumb
 	}
 }

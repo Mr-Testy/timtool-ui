@@ -15,8 +15,9 @@ class App extends React.Component {
   state ={}
 
   componentDidMount(){
-    this.props.fetchTunes(0,5000)
-    this.props.fetchTunes(0,50)
+    if (this.props.tunesAreStale) {
+      this.props.fetchTunes(0,5000)
+    }
   }
 
   render () {
@@ -85,6 +86,7 @@ class App extends React.Component {
 
   App.propTypes = {
     sideBarIsVisible: PropTypes.bool.isRequired,
+    tunesAreStale: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     breadcrumb: PropTypes.object.isRequired,
     switchIsFirstPageVisited: PropTypes.func.isRequired,
