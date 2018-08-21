@@ -7,10 +7,16 @@ const mapStateToProps = state => {
 	return {
 		tunes: state.tunes.tunes,
 		isFetching: state.tunes.isFetching,
-		lastUpdated: state.tunes.lastUpdated
+		lastUpdated: state.tunes.lastUpdated,
 	}
 }
+
+const mapDispatchToProps = dispatch => {
+	return {
+	}
+}
+
 export default withRouter(connect(
 	mapStateToProps,
-	null
+	mapDispatchToProps
 	)(Tunes))

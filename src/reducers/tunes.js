@@ -1,12 +1,15 @@
 import {
 	REQUEST_TUNES,
-	RECEIVE_TUNES
+	RECEIVE_TUNES,
+	CHANGE_PAGE_OF_TUNES
 } from '../constants'
 
 export default function tunes(state = {
 	isFetching: false,
 	tunes: [],
-	areStale: true
+	areStale: true,
+	activePage: 1,
+	tunesPerPage: 50
 }, action) {
 	switch (action.type) {
 		case REQUEST_TUNES:
@@ -20,6 +23,11 @@ export default function tunes(state = {
 			tunes: action.tunes,
 			lastUpdated: action.receivedAt,
 			areStale: false,
+		})
+
+		case CHANGE_PAGE_OF_TUNES:
+		return Object.assign({}, state, {
+			activePage: action.activePage,
 		})
 
 		default:

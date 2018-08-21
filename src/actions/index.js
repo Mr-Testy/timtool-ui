@@ -25,3 +25,7 @@ export const receiveTunes = (json) => ({
 	tunes: json,
 	receivedAt: Date.now()
 })
+export const changePageOfTunes = (activePage) => ({ 
+	type: types.CHANGE_PAGE_OF_TUNES,
+	activePage: activePage
+})

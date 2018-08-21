@@ -12,3 +12,4 @@ export const SHOW_ALL = 'SHOW_ALL'
 
 export const REQUEST_TUNES = 'REQUEST_TUNES'
 export const RECEIVE_TUNES = 'RECEIVE_TUNES'
+export const CHANGE_PAGE_OF_TUNES = 'CHANGE_PAGE_OF_TUNES'

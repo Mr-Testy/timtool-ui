@@ -34,7 +34,7 @@ export default class Footer extends Component {
 
     return (
       <div>
-      <Menu inverted pointing attached="top">
+      <Menu inverted pointing attached="top" style={{marginTop: '15px'}}>
       <Menu.Item
       name="About Timtool"
       active={activeFooter === 'About Timtool'}
