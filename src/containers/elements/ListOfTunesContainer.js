@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
 	return {
-		tunes: state.tunes.tunes,
+		tunes: state.tunes.filteredTunes,
 		activePage: state.tunes.activePage,
 		tunesPerPage: state.tunes.tunesPerPage
 	}
