@@ -1,5 +1,7 @@
 import { connect } from 'react-redux'
-import * as ActionCreators from '../../actions'
+import * as SidebarActionCreators from '../../actions/sidebar_actions'
+import * as BreadcrumbActionCreators from '../../actions/breadcrumb_actions'
+import * as TuneActionCreators from '../../actions/tune_actions'
 import App from '../../components/layouts/App'
 import { withRouter } from 'react-router-dom'
 
@@ -14,18 +16,18 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		switchIsFirstPageVisited: () => dispatch(ActionCreators.switchIsFirstPageVisited()),
-		switchVisibleSideBarOff: () => dispatch(ActionCreators.switchVisibleSideBarOff()),
-		switchVisibleSideBarOn: () => dispatch(ActionCreators.switchVisibleSideBarOn()),
+		switchIsFirstPageVisited: () => dispatch(BreadcrumbActionCreators.switchIsFirstPageVisited()),
+		switchVisibleSideBarOff: () => dispatch(SidebarActionCreators.switchVisibleSideBarOff()),
+		switchVisibleSideBarOn: () => dispatch(SidebarActionCreators.switchVisibleSideBarOn()),
 		changePage: (path, title, subTitle, icon) => {
-			dispatch(ActionCreators.switchVisibleSideBarOff())
-			dispatch(ActionCreators.reInitBreadcrumb(path, title, subTitle, icon))
+			dispatch(SidebarActionCreators.switchVisibleSideBarOff())
+			dispatch(BreadcrumbActionCreators.reInitBreadcrumb(path, title, subTitle, icon))
 		},
 		fetchTunes: (min, max) => {
-			dispatch(ActionCreators.requestTunes())
+			dispatch(TuneActionCreators.requestTunes())
 			fetch('https://testy-dev.satsu.eu/timtoolApi/tunes/?limit=' + min +';offset=' + max)
 			.then(response => response.json())
-			.then(json => dispatch(ActionCreators.receiveTunes(json)))
+			.then(json => dispatch(TuneActionCreators.receiveTunes(json)))
 		}
 	}
 }

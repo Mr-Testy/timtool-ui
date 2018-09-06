@@ -1,21 +1,20 @@
 import { connect } from 'react-redux'
-import * as SidebarActionCreators from '../../actions/sidebar_actions'
-import Main from '../../components/layouts/Main'
+// import * as TuneActionCreators from '../../actions/tune_actions'
+import TuneDetails from '../../components/elements/TuneDetails'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
 	return {
-		sideBarIsVisible: state.sidebar.isVisible,
+		selectedTune: state.tunes.selectedTune,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		switchVisibleSideBarOff: () => dispatch(SidebarActionCreators.switchVisibleSideBarOff()),
 	}
 }
 
 export default withRouter(connect(
 	mapStateToProps,
 	mapDispatchToProps
-	)(Main))
+	)(TuneDetails))

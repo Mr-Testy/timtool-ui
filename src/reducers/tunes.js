@@ -1,17 +1,12 @@
 import _ from 'lodash'
-
-import {
-	REQUEST_TUNES,
-	RECEIVE_TUNES,
-	CHANGE_PAGE_OF_TUNES,
-	FILTER_TUNES_BY_NAME,
-	FILTER_TUNES_BY_KEY,
-	FILTER_TUNES_BY_TYPE,
-	REINIT_TUNE_FILTERS
-} from '../constants'
+import * as CONST from '../constants/tune_constants'
 
 export default function tunes(state = {
 	isFetching: false,
+	isFetchingTune: false,
+	lastUpdatedTune: null,
+	lastUpdated: null,
+	requestedTune: "",
 	tunes: [],
 	filteredTunes: [],
 	filters: {
@@ -21,15 +16,16 @@ export default function tunes(state = {
 	},
 	areStale: true,
 	activePage: 1,
-	tunesPerPage: 50
+	tunesPerPage: 30,
+	selectedTune: {}
 }, action) {
 	switch (action.type) {
-		case REQUEST_TUNES:
+		case CONST.REQUEST_TUNES:
 		return Object.assign({}, state, {
 			isFetching: true,
 		})
 
-		case RECEIVE_TUNES:
+		case CONST.RECEIVE_TUNES:
 		return Object.assign({}, state, {
 			isFetching: false,
 			tunes: action.tunes,
@@ -38,12 +34,25 @@ export default function tunes(state = {
 			areStale: false,
 		})
 
-		case CHANGE_PAGE_OF_TUNES:
+		case CONST.REQUEST_TUNE:
+		return Object.assign({}, state, {
+			isFetchingTune: true,
+			requestedTune: action.requestedTune
+		})
+
+		case CONST.RECEIVE_TUNE:
+		return Object.assign({}, state, {
+			isFetchingTune: false,
+			selectedTune: action.tune,
+			lastUpdatedTune: action.receivedAt,
+		})
+
+		case CONST.CHANGE_PAGE_OF_TUNES:
 		return Object.assign({}, state, {
 			activePage: action.activePage,
 		})
 
-		case FILTER_TUNES_BY_NAME:
+		case CONST.FILTER_TUNES_BY_NAME:
 		return Object.assign({}, state, {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {name: action.name}),
@@ -55,7 +64,7 @@ export default function tunes(state = {
 			})
 		})
 
-		case FILTER_TUNES_BY_KEY:
+		case CONST.FILTER_TUNES_BY_KEY:
 		return Object.assign({}, state, {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {key: action.key}),
@@ -67,7 +76,7 @@ export default function tunes(state = {
 			})
 		})
 
-		case FILTER_TUNES_BY_TYPE:
+		case CONST.FILTER_TUNES_BY_TYPE:
 		return Object.assign({}, state, {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {type: action.filterType}),
@@ -78,7 +87,7 @@ export default function tunes(state = {
 				if (bool) return tune;
 			})
 		})
-		case REINIT_TUNE_FILTERS:
+		case CONST.REINIT_TUNE_FILTERS:
 		return Object.assign({}, state, {
 			filters: {
 				name: "",

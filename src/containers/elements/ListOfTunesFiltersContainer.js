@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import * as ActionCreators from '../../actions'
+import * as TuneActionCreators from '../../actions/tune_actions'
 import ListOfTunesFilters from '../../components/elements/ListOfTunesFilters'
 import { withRouter } from 'react-router-dom'
 
@@ -11,10 +11,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		filterTunesByName: (name) => dispatch(ActionCreators.filterTunesByName(name)),
-		filterTunesByKey: (key) => dispatch(ActionCreators.filterTunesByKey(key)),
-		filterTunesByType: (type) => dispatch(ActionCreators.filterTunesByType(type)),
-		reinitTuneFilters: () => dispatch(ActionCreators.reinitTuneFilters()),
+		filterTunesByName: (name) => dispatch(TuneActionCreators.filterTunesByName(name)),
+		filterTunesByKey: (key) => dispatch(TuneActionCreators.filterTunesByKey(key)),
+		filterTunesByType: (type) => dispatch(TuneActionCreators.filterTunesByType(type)),
+		reinitTuneFilters: () => dispatch(TuneActionCreators.reinitTuneFilters()),
 	}
 }
 

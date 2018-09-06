@@ -1,11 +1,5 @@
 import _ from 'lodash'
-import {
-	REINIT_BREADCRUMB,
-	ADD_TO_BREADCRUMB,
-	ROLL_BACK_BREADCRUMB,
-	SWITCH_HEADER_SEARCH_PERFORMED,
-	SWITCH_IS_FIRST_PAGE_VISITED
-} from '../constants'
+import * as CONST from '../constants/breadcrumb_constants'
 
 export default function breadcrumb(state = {pages: [{
 	path: "/",
@@ -16,10 +10,10 @@ export default function breadcrumb(state = {pages: [{
 isSearchPerformedFromHeader : false,
 isFirstPageVisited : true}, action) {
 	switch (action.type) {
-		case SWITCH_IS_FIRST_PAGE_VISITED:
+		case CONST.SWITCH_IS_FIRST_PAGE_VISITED:
 		return _.assign({}, state, {isFirstPageVisited : false})
 
-		case REINIT_BREADCRUMB:
+		case CONST.REINIT_BREADCRUMB:
 		return _.assign({}, {pages: [{
 			path: action.path,
 			title: action.title,
@@ -28,13 +22,13 @@ isFirstPageVisited : true}, action) {
 		}],
 		isSearchPerformedFromHeader : false})
 
-		case ADD_TO_BREADCRUMB:
+		case CONST.ADD_TO_BREADCRUMB:
 		return _.assign({}, state, {IsVisible: false})
 
-		case ROLL_BACK_BREADCRUMB:
+		case CONST.ROLL_BACK_BREADCRUMB:
 		return _.assign({}, state.breadcrumb.slice(0, action.destination + 1))
 
-		case SWITCH_HEADER_SEARCH_PERFORMED:
+		case CONST.SWITCH_HEADER_SEARCH_PERFORMED:
 		return _.assign({}, state, {isSearchPerformedFromHeader: true})
 
 		default:

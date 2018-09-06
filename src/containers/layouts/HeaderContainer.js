@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import * as ActionCreators from '../../actions'
+import * as SidebarActionCreators from '../../actions/sidebar_actions'
+import * as BreadcrumbActionCreators from '../../actions/breadcrumb_actions'
 import Header from '../../components/layouts/Header'
 import { withRouter } from 'react-router-dom'
 
@@ -12,9 +13,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
-		switchVisibleSideBarOn: () => dispatch(ActionCreators.switchVisibleSideBarOn()),
+		switchVisibleSideBarOn: () => dispatch(SidebarActionCreators.switchVisibleSideBarOn()),
 		changePage: (path, title, subTitle, icon) => {
-			dispatch(ActionCreators.reInitBreadcrumb(path, title, subTitle, icon),
+			dispatch(BreadcrumbActionCreators.reInitBreadcrumb(path, title, subTitle, icon),
 				ownProps.history.push(path))
 		}
 	}

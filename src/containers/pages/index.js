@@ -1,9 +1,11 @@
 import HomeContainer from './HomeContainer';
-import TunesContainer from './TunesContainer';
+import PageHeaderContainer from './PageHeaderContainer';
 import SearchContainer from './SearchContainer';
+import TunesContainer from './TunesContainer';
 
 export {
 	HomeContainer,
+	PageHeaderContainer,
+	SearchContainer,
 	TunesContainer,
-	SearchContainer
 };
