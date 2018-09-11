@@ -26,9 +26,15 @@ const ListOfTunes = ({
 </List>
 </React.Fragment>
 }
+<React.Fragment>
+<Header size="small">
+Versions : 
+</Header>
 {selectedTune.abcs.map((abc) => (
 	<ABCDetailsContainer abc={abc} key={selectedTune.slug+"_"+abc.id}/>
-	))}
+	))
+}
+</React.Fragment>
 </React.Fragment>
 )
 

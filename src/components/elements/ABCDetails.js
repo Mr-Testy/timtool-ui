@@ -25,7 +25,7 @@ class ABCDetails extends React.Component {
       <React.Fragment>
       <Menu pointing borderless compact>
       <Menu.Item header>
-      Version de {abc.version}
+      {abc.version}
       </Menu.Item>
       <Menu.Item 
       name='music' 
@@ -68,9 +68,9 @@ class ABCDetails extends React.Component {
   }
   { activeItem === "file audio" &&
   <ReactAudioPlayer
-  src={"https://files.timtool.ovh/tune_midi/"+selectedTune.slug+"-"+abc.version+".mid"}
-  autoPlay
+  src={"https://files.timtool.ovh/tune_midi/"+selectedTune.slug+"-"+abc.version+".mp3"}
   controls
+  controlsList="nodownload"
   />
 }
 </React.Fragment>

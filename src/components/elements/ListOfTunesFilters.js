@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button, Form, Segment, Header } from 'semantic-ui-react'
+import { Button, Form, Segment, Header, Modal, List } from 'semantic-ui-react'
 
 const ListOfTunesFilters = ({filters, filterTunesByName, filterTunesByKey, filterTunesByType, reinitTuneFilters}) => (
 	<Segment inverted>
@@ -12,6 +12,26 @@ const ListOfTunesFilters = ({filters, filterTunesByName, filterTunesByKey, filte
 	<Form.Input fluid label='Type' placeholder='jig, barndance...' onChange={(e,i) => filterTunesByType(i.value)} value={filters["type"]}/>
 	</Form.Group>
 	<Button onClick={() => reinitTuneFilters()}>Reinit</Button>
+	<Modal trigger={<Button>Help</Button>} closeIcon>
+	<Modal.Header>Help about filters</Modal.Header>
+	<Modal.Content >
+	<Modal.Description>
+	<Header size="small">Functionnalities</Header>
+	<List as='ol'>
+	<List.Item as='li'>Search by name
+	<List.List as='ol'>
+	<List.Item as='li'>The search goes through main and secondary titles</List.Item>
+	</List.List>
+	</List.Item>
+	<List.Item as='li'>Search by key</List.Item>
+	<List.Item as='li'>Search by type</List.Item>
+	<List.Item as='li'>Perform multiple searches at a time</List.Item>
+	<List.Item as='li'>Case insensitive</List.Item>
+	<List.Item as='li'>Reinit filters</List.Item>
+	</List>
+	</Modal.Description>
+	</Modal.Content>
+	</Modal>
 	</Form>
 	</Segment>
 	)

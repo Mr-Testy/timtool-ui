@@ -57,7 +57,7 @@ export default function tunes(state = {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {name: action.name}),
 			filteredTunes: _.filter(state.tunes, (tune) => {
-				let bool = tune.name.toLowerCase().includes(action.name.toLowerCase()) &&
+				let bool = (_.filter(tune.titles, (title) => title.name.toLowerCase().includes(action.name.toLowerCase())).length > 0 ) &&
 				tune.key.toLowerCase().includes(state.filters["key"].toLowerCase()) &&
 				tune.type.toLowerCase().includes(state.filters["type"].toLowerCase());
 				if (bool) return tune;
@@ -69,7 +69,7 @@ export default function tunes(state = {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {key: action.key}),
 			filteredTunes: _.filter(state.tunes, (tune) => {
-				let bool = tune.name.toLowerCase().includes(state.filters["name"].toLowerCase()) &&
+				let bool = (_.filter(tune.titles, (title) => title.name.toLowerCase().includes(state.filters["name"].toLowerCase())).length > 0 ) &&
 				tune.key.toLowerCase().includes(action.key.toLowerCase()) &&
 				tune.type.toLowerCase().includes(state.filters["type"].toLowerCase());
 				if (bool) return tune;
@@ -81,7 +81,7 @@ export default function tunes(state = {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {type: action.filterType}),
 			filteredTunes: _.filter(state.tunes, (tune) => {
-				let bool = tune.name.toLowerCase().includes(state.filters["name"].toLowerCase()) &&
+				let bool = (_.filter(tune.titles, (title) => title.name.toLowerCase().includes(state.filters["name"].toLowerCase())).length > 0 ) &&
 				tune.key.toLowerCase().includes(state.filters["key"].toLowerCase()) &&
 				tune.type.toLowerCase().includes(action.filterType.toLowerCase());
 				if (bool) return tune;
