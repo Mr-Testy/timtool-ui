@@ -11,7 +11,7 @@ const ListOfTunesFilters = ({filters, filterTunesByName, filterTunesByKey, filte
 	<Form.Input fluid label='Key' placeholder='Ador, D...' onChange={(e,i) => filterTunesByKey(i.value)} value={filters["key"]}/>
 	<Form.Input fluid label='Type' placeholder='jig, barndance...' onChange={(e,i) => filterTunesByType(i.value)} value={filters["type"]}/>
 	</Form.Group>
-	<Button onClick={() => reinitTuneFilters()}>Reinit</Button>
+	<Button primary onClick={() => reinitTuneFilters()}>Reinit</Button>
 	<Modal trigger={<Button>Help</Button>} closeIcon>
 	<Modal.Header>Help about filters</Modal.Header>
 	<Modal.Content >

@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 		sideBarIsVisible: state.sidebar.isVisible,
 		breadcrumb: state.breadcrumb,
 		location: ownProps.location,
-		tunesAreStale: state.tunes.areStale
+		tunesAreStale: state.tunes.areStale,
 	}
 }
 
@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => {
 			fetch('https://testy-dev.satsu.eu/timtoolApi/tunes/?limit=' + min +';offset=' + max)
 			.then(response => response.json())
 			.then(json => dispatch(TuneActionCreators.receiveTunes(json)))
-		}
+		},
 	}
 }
 

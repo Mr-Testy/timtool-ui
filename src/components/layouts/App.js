@@ -26,7 +26,8 @@ class App extends React.Component {
       breadcrumb,
       switchIsFirstPageVisited,
       changePage,
-      location } = this.props
+      location,
+    } = this.props
       return (
         <div>
         {redirectIfFirstPageVisited (breadcrumb, switchIsFirstPageVisited, location)}
