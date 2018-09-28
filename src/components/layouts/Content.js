@@ -5,14 +5,14 @@ import {
   Comparator,
   Generator,
   MyAccount,
-  MyFavorites,
   MyGroups,
   MyDashboard,
 } from '../pages';
 import {
   HomeContainer,
   TunesContainer,
-  SearchContainer
+  SearchContainer,
+  MyTunesContainer
 } from '../../containers/pages'
 
 const Content = () => (
@@ -52,8 +52,8 @@ const Content = () => (
   />
   <Route
   exact
-  path="/myfavorites"
-  component={MyFavorites}
+  path="/mytunes"
+  component={MyTunesContainer}
   />
   <Route
   exact

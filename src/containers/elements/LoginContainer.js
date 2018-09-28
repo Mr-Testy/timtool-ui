@@ -2,6 +2,10 @@ import { connect } from 'react-redux'
 import * as UserActionCreators from '../../actions/user_actions'
 import Login from '../../components/elements/Login'
 import { withRouter } from 'react-router-dom'
+import {
+	BACKEND_URL,
+	TOKEN,
+} from '../../constants/CONFIG'
 
 const mapStateToProps = state => {
 	return {
@@ -14,7 +18,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		login: (username, password) => {
 			dispatch(UserActionCreators.requestToken(username))
-			fetch("https://testy-dev.satsu.eu/timtoolApi/get-token/", {
+			fetch(BACKEND_URL+TOKEN, {
 				method: "POST",
 				headers: {
 					'Accept': 'application/json',
@@ -30,16 +34,8 @@ const mapDispatchToProps = dispatch => {
 				if (json.hasOwnProperty("non_field_errors")){
 					dispatch(UserActionCreators.receiveTokenError(json))
 				}
-				else {alert(json["token"])
+				else {
 					dispatch(UserActionCreators.receiveToken(json))
-      				dispatch(UserActionCreators.requestFavoritedTunes())
-					fetch('https://testy-dev.satsu.eu/timtoolApi/favoris/', {
-						headers: {
-							'Authorization' : 'Token '+json["token"]
-						},
-					})
-					.then(response => response.json())
-					.then(json => dispatch(UserActionCreators.requestFavoritedTunes(json)))
 				}
 			})
 		}

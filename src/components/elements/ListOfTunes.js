@@ -19,7 +19,9 @@ const ListOfTunes = ({
 	isFetchingTune,
 	lastUpdatedTune,
 	changePageOfTunes,
-	fetchTune
+	fetchTune,
+	switchFavori,
+	isLogged,
 }) => (
 <React.Fragment>
 <Card.Group>
@@ -32,9 +34,32 @@ const ListOfTunes = ({
 	color={requestedTune === tune.slug ? "green" : null} 
 	fluid>
 	<Card.Content>
-	<Image floated='right' onClick={(e) => {e.stopPropagation(); alert("lol");}}>
+	{ isLogged &&
+	<Image floated='right' onClick={(e) => {e.stopPropagation(); switchFavori(tune.slug);}}>
 	<Icon size='big' name="heart" link/>
 	</Image>
+	}
+	{ !isLogged &&
+	<Image floated='right' onClick={(e) => {e.stopPropagation();}}>
+	<Icon size='big' name="heart" link/>
+	</Image>
+	}
+	{ tune.hasOwnProperty("status") &&
+	<React.Fragment>
+	{ tune.status && (
+			<Image floated='right' onClick={(e) => {e.stopPropagation(); alert("learned");}}>
+			<Icon size='big' name="thumbs up" link/>
+			</Image>
+			)
+	}
+	{ !tune.status && (
+			<Image floated='right' onClick={(e) => {e.stopPropagation(); alert("learned");}}>
+			<Icon size='big' name="thumbs down" link/>
+			</Image>
+			)		
+	}
+	</React.Fragment>
+	}
 	<Card.Header>{tune.name}</Card.Header>
 	<Card.Meta>{tune.type} | {tune.key}</Card.Meta>
 	<Transition 
@@ -77,6 +102,8 @@ ListOfTunes.propTypes = {
 	tunesPerPage: PropTypes.number.isRequired,
 	changePageOfTunes: PropTypes.func.isRequired,
 	fetchTune: PropTypes.func.isRequired,
+	switchFavori: PropTypes.func.isRequired,
+	isLogged: PropTypes.bool.isRequired
 }
 
 export default ListOfTunes

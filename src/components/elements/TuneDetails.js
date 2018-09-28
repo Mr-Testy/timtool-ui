@@ -14,9 +14,9 @@ const ListOfTunes = ({
 	<Header size="small">
 	Autres titres : 
 	</Header>
-	<List attached>
+	<List>
 	{selectedTune.titles.map((title) => (
-		<React.Fragment>
+		<React.Fragment key={title.name}>
 		{title.name !== selectedTune.name &&
 			<List.Item>{title.name}</List.Item>
 		}

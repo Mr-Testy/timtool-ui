@@ -76,9 +76,9 @@ class Header extends React.Component {
         <Dropdown.Item
         as={Link}
         icon="heart"
-        content="My favorites"
-        onClick={() => changePage("/myfavorites", "My favorites", "Mes tunes ajoutés en favori", "heart")}
-        to="/myfavorites"
+        content="My Tunes"
+        onClick={() => changePage("/mytunes", "My tunes", "Mes tunes ajoutés en favori", "heart")}
+        to="/mytunes"
         />
         <Dropdown.Item
         as={Link}

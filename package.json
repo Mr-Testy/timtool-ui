@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "cross-fetch": "^2.2.2",
     "react": "16.3.2",
     "react-audio-player": "^0.10.0",

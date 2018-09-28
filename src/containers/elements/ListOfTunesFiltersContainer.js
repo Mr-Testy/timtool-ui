@@ -5,7 +5,8 @@ import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
 	return {
-		filters: state.tunes.filters
+		filters: state.tunes.filters,
+		isFilterForFavoritedTunes: false
 	}
 }
 

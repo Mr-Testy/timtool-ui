@@ -20,6 +20,12 @@ class App extends React.Component {
     }
   }
 
+  componentDidUpdate(){
+    if (this.props.isLogged) {
+      this.props.fetchTunesFavoris(this.props.token)
+    }
+  }
+
   render () {
     const {
       sideBarIsVisible,
@@ -92,6 +98,9 @@ class App extends React.Component {
     breadcrumb: PropTypes.object.isRequired,
     switchIsFirstPageVisited: PropTypes.func.isRequired,
     changePage: PropTypes.func.isRequired,
+    isLogged: PropTypes.bool.isRequired,
+    token: PropTypes.string,
+    fetchTunesFavoris: PropTypes.func.isRequired,
   }
 
   export default App
