@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom'
 const mapStateToProps = state => {
 	return {
 		tunes: state.user.filteredTunes,
-		isFetching: state.user.isFetchingFavoritedTunes,
-		lastUpdated: state.user.lastUpdatedFavoritedTunes,
+		isFetching: state.user.isFetchingFavouritedTunes,
+		lastUpdated: state.user.lastUpdatedFavouritedTunes,
 	}
 }
 

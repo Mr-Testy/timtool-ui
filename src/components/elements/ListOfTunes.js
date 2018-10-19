@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Pagination, 
 	Card, 
-	Icon, 
-	Image, 
 	Divider, 
 	Loader, 
 	Transition
 } from 'semantic-ui-react'
 import TuneDetailsContainer from '../../containers/elements/TuneDetailsContainer'
+import FavoriContainer from '../../containers/elements/FavoriContainer'
+import StatusContainer from '../../containers/elements/StatusContainer'
 
 const ListOfTunes = ({
 	tunes,
@@ -21,7 +21,6 @@ const ListOfTunes = ({
 	changePageOfTunes,
 	fetchTune,
 	switchFavori,
-	isLogged,
 }) => (
 <React.Fragment>
 <Card.Group>
@@ -34,32 +33,8 @@ const ListOfTunes = ({
 	color={requestedTune === tune.slug ? "green" : null} 
 	fluid>
 	<Card.Content>
-	{ isLogged &&
-	<Image floated='right' onClick={(e) => {e.stopPropagation(); switchFavori(tune.slug);}}>
-	<Icon size='big' name="heart" link/>
-	</Image>
-	}
-	{ !isLogged &&
-	<Image floated='right' onClick={(e) => {e.stopPropagation();}}>
-	<Icon size='big' name="heart" link/>
-	</Image>
-	}
-	{ tune.hasOwnProperty("status") &&
-	<React.Fragment>
-	{ tune.status && (
-			<Image floated='right' onClick={(e) => {e.stopPropagation(); alert("learned");}}>
-			<Icon size='big' name="thumbs up" link/>
-			</Image>
-			)
-	}
-	{ !tune.status && (
-			<Image floated='right' onClick={(e) => {e.stopPropagation(); alert("learned");}}>
-			<Icon size='big' name="thumbs down" link/>
-			</Image>
-			)		
-	}
-	</React.Fragment>
-	}
+	<FavoriContainer tune={tune}/>
+	<StatusContainer tune={tune}/>
 	<Card.Header>{tune.name}</Card.Header>
 	<Card.Meta>{tune.type} | {tune.key}</Card.Meta>
 	<Transition 
@@ -102,8 +77,6 @@ ListOfTunes.propTypes = {
 	tunesPerPage: PropTypes.number.isRequired,
 	changePageOfTunes: PropTypes.func.isRequired,
 	fetchTune: PropTypes.func.isRequired,
-	switchFavori: PropTypes.func.isRequired,
-	isLogged: PropTypes.bool.isRequired
 }
 
 export default ListOfTunes

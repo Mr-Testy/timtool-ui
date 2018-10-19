@@ -7,10 +7,11 @@ import {
 	TOKEN,
 } from '../../constants/CONFIG'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
 	return {
 		errors: state.user.errors,
-		isLogging: state.user.isLogging
+		isLogging: state.user.isLogging,
+		message: ownProps.message
 	}
 }
 

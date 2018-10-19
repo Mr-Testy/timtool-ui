@@ -28,7 +28,7 @@ const mapDispatchToProps = dispatch => {
 			fetch(BACKEND_URL+TUNE+slug)
 			.then(response => response.json())
 			.then(json => dispatch(TuneActionCreators.receiveTune(json)))
-		}
+		},
 	}
 }
 

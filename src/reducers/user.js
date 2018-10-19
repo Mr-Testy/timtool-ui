@@ -20,9 +20,9 @@ export default function breadcrumb(state = {
 	username: null,
 	token: null,
 	errors: [],
-	isFetchingFavoritedTunes: false,
-	lastUpdatedFavoritedTunes: null,
-	favoritedTunes: [],
+	isFetchingFavouritedTunes: false,
+	lastUpdatedFavouritedTunes: null,
+	favouritedTunes: [],
 	filteredTunes: [],
 	filters: {
 		name: "",
@@ -34,9 +34,13 @@ export default function breadcrumb(state = {
 	activePage: 1,
 	tunesPerPage: 30,
 	requestedFavori: "",
+	requestedStatus: "",
 	lastUpdatedSwitchFavori: null,
+	lastUpdatedSwitchStatus: null,
 	switchFavoriResponse: null,
+	switchStatusResponse: null,
 	isFetchingSwitchFavori: false,
+	isFetchingSwitchStatus: false,
 }, action) {
 	switch (action.type) {
 		case CONST.REQUEST_TOKEN:
@@ -73,13 +77,13 @@ export default function breadcrumb(state = {
 			errors: []
 		})
 
-		case CONST.REQUEST_FAVORITED_TUNES:
+		case CONST.REQUEST_FAVOURITED_TUNES:
 		return Object.assign({}, state, {
-			isFetching: true,
+			isFetchingFavouritedTunes: true,
 		})
 
-		case CONST.RECEIVE_FAVORITED_TUNES:
-		let flatTunes = action.favoritedTunes.map(tune => {
+		case CONST.RECEIVE_FAVOURITED_TUNES:
+		let flatTunes = action.favouritedTunes.map(tune => {
 			let flatTune = tune
 			flatTune["name"] = tune.of_tune.name
 			flatTune["key"] = tune.of_tune.key
@@ -92,10 +96,10 @@ export default function breadcrumb(state = {
 		})
 		
 		return Object.assign({}, state, {
-			isFetchingFavoritedTunes: false,
-			favoritedTunes: flatTunes,
+			isFetchingFavouritedTunes: false,
+			favouritedTunes: flatTunes,
 			filteredTunes: flatTunes,
-			lastUpdatedFavoritedTunes: action.receivedAt,
+			lastUpdatedFavouritedTunes: action.receivedAt,
 			areStale: false,
 		})
 
@@ -104,11 +108,11 @@ export default function breadcrumb(state = {
 			activePage: action.activePage,
 		})
 
-		case CONST.FILTER_FAVORITED_TUNES_BY_NAME:
+		case CONST.FILTER_FAVOURITED_TUNES_BY_NAME:
 		return Object.assign({}, state, {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {name: action.name}),
-			filteredTunes: _.filter(state.favoritedTunes, (tune) => {
+			filteredTunes: _.filter(state.favouritedTunes, (tune) => {
 				let bool = (_.filter(tune.titles, (title) => title.name.toLowerCase().includes(action.name.toLowerCase())).length > 0 ) &&
 				tune.key.toLowerCase().includes(state.filters["key"].toLowerCase()) &&
 				tune.type.toLowerCase().includes(state.filters["type"].toLowerCase()) &&
@@ -117,11 +121,11 @@ export default function breadcrumb(state = {
 			})
 		})
 
-		case CONST.FILTER_FAVORITED_TUNES_BY_KEY:
+		case CONST.FILTER_FAVOURITED_TUNES_BY_KEY:
 		return Object.assign({}, state, {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {key: action.key}),
-			filteredTunes: _.filter(state.favoritedTunes, (tune) => {
+			filteredTunes: _.filter(state.favouritedTunes, (tune) => {
 				let bool = (_.filter(tune.titles, (title) => title.name.toLowerCase().includes(state.filters["name"].toLowerCase())).length > 0 ) &&
 				tune.key.toLowerCase().includes(action.key.toLowerCase()) &&
 				tune.type.toLowerCase().includes(state.filters["type"].toLowerCase()) &&
@@ -130,11 +134,11 @@ export default function breadcrumb(state = {
 			})
 		})
 
-		case CONST.FILTER_FAVORITED_TUNES_BY_TYPE:
+		case CONST.FILTER_FAVOURITED_TUNES_BY_TYPE:
 		return Object.assign({}, state, {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {type: action.filterType}),
-			filteredTunes: _.filter(state.favoritedTunes, (tune) => {
+			filteredTunes: _.filter(state.favouritedTunes, (tune) => {
 				let bool = (_.filter(tune.titles, (title) => title.name.toLowerCase().includes(state.filters["name"].toLowerCase())).length > 0 ) &&
 				tune.key.toLowerCase().includes(state.filters["key"].toLowerCase()) &&
 				tune.type.toLowerCase().includes(action.filterType.toLowerCase()) &&
@@ -142,7 +146,7 @@ export default function breadcrumb(state = {
 				if (bool) return tune;
 			})
 		})
-		case CONST.REINIT_FAVORITED_TUNE_FILTERS:
+		case CONST.REINIT_FAVOURITED_TUNE_FILTERS:
 		return Object.assign({}, state, {
 			filters: {
 				name: "",
@@ -150,15 +154,15 @@ export default function breadcrumb(state = {
 				type: "",
 				learned: "",
 			},
-			filteredTunes: state.favoritedTunes,
+			filteredTunes: state.favouritedTunes,
 			activePage: 1
 		})
 
-		case CONST.FILTER_FAVORITED_TUNES_BY_LEARNED:
+		case CONST.FILTER_FAVOURITED_TUNES_BY_LEARNED:
 		return Object.assign({}, state, {
 			activePage: 1,
 			filters: Object.assign({}, state.filters, {learned: action.learned}),
-			filteredTunes: _.filter(state.favoritedTunes, (tune) => {
+			filteredTunes: _.filter(state.favouritedTunes, (tune) => {
 				let bool = (_.filter(tune.titles, (title) => title.name.toLowerCase().includes(state.filters["name"].toLowerCase())).length > 0 ) &&
 				tune.key.toLowerCase().includes(state.filters["key"].toLowerCase()) &&
 				tune.type.toLowerCase().includes(state.filters["type"].toLowerCase()) &&
@@ -170,7 +174,8 @@ export default function breadcrumb(state = {
 		case CONST.REQUEST_SWITCH_FAVORI:
 		return Object.assign({}, state, {
 			isFetchingSwitchFavori: true,
-			requestedFavori: action.slug
+			requestedFavori: action.slug,
+			requestedStatus: "",
 		})
 
 		case CONST.RECEIVE_SWITCH_FAVORI:
@@ -178,6 +183,22 @@ export default function breadcrumb(state = {
 			isFetchingSwitchFavori: false,
 			switchFavoriResponse: action.response,
 			lastUpdatedSwitchFavori: action.receivedAt,
+			areStale: true,
+		})
+
+		case CONST.REQUEST_SWITCH_STATUS:
+		return Object.assign({}, state, {
+			isFetchingSwitchStatus: true,
+			requestedStatus: action.slug,
+			requestedFavori: "",
+		})
+
+		case CONST.RECEIVE_SWITCH_STATUS:
+		return _.assign({}, state, {
+			isFetchingSwitchStatus: false,
+			switchStatusResponse: action.response,
+			lastUpdatedSwitchStatus: action.receivedAt,
+			areStale: true,
 		})
 
 		default:

@@ -11,7 +11,6 @@ import {
 import {
   HomeContainer,
   TunesContainer,
-  SearchContainer,
   MyTunesContainer
 } from '../../containers/pages'
 
@@ -25,10 +24,6 @@ const Content = () => (
   <Route
   path="/tunes"
   component={TunesContainer}
-  />
-  <Route
-  path="/search"
-  component={SearchContainer}
   />
   <Route
   exact

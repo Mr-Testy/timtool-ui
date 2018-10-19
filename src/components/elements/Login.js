@@ -63,7 +63,7 @@ class Login extends React.Component {
 
   render () {
     const { needsSignup, username_error, password_error } = this.state
-    const { errors, isLogging } = this.props
+    const { errors, isLogging, message } = this.props
     return (
       <React.Fragment>
       { errors.length > 0 &&
@@ -77,6 +77,12 @@ class Login extends React.Component {
           />
           )}
         </React.Fragment>
+      }
+      {
+        typeof message !== "undefined" &&
+          <Message
+          content={message}
+          />
       }
       { !needsSignup ? (
         <Form onSubmit={(e) => this.handleSubmit()}>
@@ -139,6 +145,7 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   errors: PropTypes.array.isRequired,
   isLogging: PropTypes.bool.isRequired,
+  message: PropTypes.string,
 }
 
 export default Login

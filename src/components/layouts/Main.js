@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
+// import {
+//     Container,
+// } from 'semantic-ui-react';
+
 import Footer from './Footer'
 import ContentContainer from '../../containers/layouts/ContentContainer'
 import HeaderContainer from '../../containers/layouts/HeaderContainer'
@@ -17,12 +21,15 @@ const toggle = ( switchVisibleSideBarOff, sideBarIsVisible) =>
 }
 
 const Main = ({ switchVisibleSideBarOff, sideBarIsVisible }) => {
-    return (<div onClick={toggle( switchVisibleSideBarOff, sideBarIsVisible)}>
+    return (
+        <div onClick={toggle( switchVisibleSideBarOff, sideBarIsVisible)}>
         <HeaderContainer />
+        <div style={{ marginTop: '5em' }}>
         <BreadcrumbsContainer />
         <PageHeaderContainer />
         <ContentContainer />
         <Footer />
+        </div>
         </div>
         )
 }

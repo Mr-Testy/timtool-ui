@@ -18,7 +18,8 @@ const mapStateToProps = (state, ownProps) => {
 		location: ownProps.location,
 		tunesAreStale: state.tunes.areStale,
 		isLogged: state.user.isLogged,
-		token: state.user.token
+		token: state.user.token,
+		favouritedTunesAreStale: state.user.areStale,
 	}
 }
 
@@ -38,14 +39,14 @@ const mapDispatchToProps = dispatch => {
 			.then(json => dispatch(TuneActionCreators.receiveTunes(json)))
 		},
 		fetchTunesFavoris: (token) => {
-      		dispatch(UserActionCreators.requestFavoritedTunes())
+      		dispatch(UserActionCreators.requestFavouritedTunes())
 			fetch(BACKEND_URL+FAVORIS,{
 				headers: {
       				'Authorization': 'Token ' +token
     			}
     		})
 			.then(response => response.json())
-			.then(json => dispatch(UserActionCreators.receiveFavoritedTunes(json)))
+			.then(json => dispatch(UserActionCreators.receiveFavouritedTunes(json)))
 		},
 	}
 }

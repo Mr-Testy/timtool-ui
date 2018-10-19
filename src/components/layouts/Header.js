@@ -34,10 +34,11 @@ class Header extends React.Component {
       changePage,
       isLogged,
       logout,
-      username
+      username,
+      changePageAndFilter
     } = this.props
     return (
-      <Menu inverted borderless>
+      <Menu inverted borderless fixed='top'>
       <Menu.Item>
       <Button
       circular
@@ -52,7 +53,7 @@ class Header extends React.Component {
       <Menu.Menu position="right">
       <Responsive minWidth={560}>
       <Menu.Item>
-      <Form onSubmit={() => changePage("/search/" + search, "Search", "Recherche de tunes contenant : " + search, "search")}>
+      <Form onSubmit={() => changePageAndFilter("/tunes", "Tunes", "Tous les tunes de Timtool", "music", search)}>
       <Form.Input
       icon={<Icon name="search" inverted circular link onClick={() => changePage("/search/" + search, "Search", "Recherche de tunes contenant : " + search, "search")}/>}
       placeholder="Search..."

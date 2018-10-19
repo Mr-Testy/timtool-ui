@@ -5,7 +5,7 @@ import { Button, Form, Segment, Header, Modal, List, Dropdown } from 'semantic-u
 
 const ListOfTunesFilters = ({
 	filters,
-	isFilterForFavoritedTunes,
+	isFilterForFavouritedTunes,
 	filterTunesByName,
 	filterTunesByKey,
 	filterTunesByType,
@@ -19,7 +19,7 @@ const ListOfTunesFilters = ({
 	<Form.Input fluid label='Name' placeholder='Wind that shakes...' onChange={(e,i) => filterTunesByName(i.value)} value={filters["name"]}/>
 	<Form.Input fluid label='Key' placeholder='Ador, D...' onChange={(e,i) => filterTunesByKey(i.value)} value={filters["key"]}/>
 	<Form.Input fluid label='Type' placeholder='jig, barndance...' onChange={(e,i) => filterTunesByType(i.value)} value={filters["type"]}/>
-	{ isFilterForFavoritedTunes &&
+	{ isFilterForFavouritedTunes &&
 	<Form.Dropdown placeholder='Choose' label='Learned ?' fluid selection options={[
   		{
     	text: 'Choose',
@@ -74,7 +74,7 @@ const ListOfTunesFilters = ({
 
 ListOfTunesFilters.propTypes = {
 	filters: PropTypes.object.isRequired,
-	isFilterForFavoritedTunes : PropTypes.bool.isRequired,
+	isFilterForFavouritedTunes : PropTypes.bool.isRequired,
 	filterTunesByName: PropTypes.func.isRequired,
 	filterTunesByKey: PropTypes.func.isRequired,
 	filterTunesByType: PropTypes.func.isRequired,

@@ -5,14 +5,7 @@ import PropTypes from 'prop-types'
 import MainContainer from '../../containers/layouts/MainContainer'
 import { Redirect } from 'react-router-dom';
 
-const redirectIfFirstPageVisited  = (breadcrumb, switchIsFirstPageVisited, location) => {
-  if (breadcrumb.isFirstPageVisited === true && location.pathname !== "/") {
-    return <Redirect to="/"/>
-  } else return null
-}
-
-class App extends React.Component { 
-  state ={}
+class App extends React.Component {
 
   componentDidMount(){
     if (this.props.tunesAreStale) {
@@ -21,22 +14,26 @@ class App extends React.Component {
   }
 
   componentDidUpdate(){
-    if (this.props.isLogged) {
+    if (this.props.isLogged && this.props.favouritedTunesAreStale) {
       this.props.fetchTunesFavoris(this.props.token)
     }
+  if (this.props.breadcrumb.isFirstPageVisited === true && this.props.location.pathname !== "/") {
+    this.props.changePage("/", "Home", "Bienvenue à la maison", "home")
+  }
   }
 
   render () {
     const {
       sideBarIsVisible,
       breadcrumb,
-      switchIsFirstPageVisited,
       changePage,
       location,
     } = this.props
       return (
         <div>
-        {redirectIfFirstPageVisited (breadcrumb, switchIsFirstPageVisited, location)}
+        { (breadcrumb.isFirstPageVisited === true && location.pathname !== "/") &&
+          <Redirect to="/"/>
+        }
         <Sidebar.Pushable as={Segment}>
         <Sidebar
         as={Menu}
@@ -93,14 +90,15 @@ class App extends React.Component {
 
   App.propTypes = {
     sideBarIsVisible: PropTypes.bool.isRequired,
+    isLogged: PropTypes.bool.isRequired,
     tunesAreStale: PropTypes.bool.isRequired,
     location: PropTypes.object.isRequired,
     breadcrumb: PropTypes.object.isRequired,
     switchIsFirstPageVisited: PropTypes.func.isRequired,
     changePage: PropTypes.func.isRequired,
-    isLogged: PropTypes.bool.isRequired,
     token: PropTypes.string,
     fetchTunesFavoris: PropTypes.func.isRequired,
+    favouritedTunesAreStale: PropTypes.bool.isRequired,
   }
 
   export default App
